@@ -1,0 +1,3 @@
+# Getting started
+
+To use this package first you should...
