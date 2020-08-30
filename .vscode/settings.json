@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "C:\\Users\\sedwardes\\Miniconda3\\envs\\pydatafaker\\python.exe",
+    "python.formatting.provider": "black"
+}
