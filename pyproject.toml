@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pydatafaker"
+version = "0.1.0"
+description = "A python package to create fake data with relationships between tables."
+authors = ["Sam Edwardes"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pandas = "^1.1.1"
+faker = "^4.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+black = {version = "^20.8b1", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
