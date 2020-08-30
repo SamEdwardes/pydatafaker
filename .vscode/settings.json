@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "C:\\Users\\sedwardes\\Miniconda3\\envs\\pydatafaker\\python.exe",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "restructuredtext.confPath": "${workspaceFolder}\\docs"
 }
