@@ -12,7 +12,7 @@ To install pydatafaker, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install -u pydatafaker
+    pip install -u pydatafaker
 
 This is the preferred method to install pydatafaker, as it will always install the most recent stable release.
 
@@ -32,13 +32,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/samedwardes/pydatafaker
+    git clone git://github.com/samedwardes/pydatafaker
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/samedwardes/pydatafaker/tarball/main
+    curl  -OL https://github.com/samedwardes/pydatafaker/tarball/main
 
 Once you have a copy of the source, you can install it. The method of installation will depend on the packaging library being used.
 
@@ -46,13 +46,13 @@ For example, if `setuptools` is being used (a setup.py file is present), install
 
 .. code-block:: console
 
-    $ python setup.py install
+    python setup.py install
 
 If `poetry` is being used (poetry.lock and pyproject.toml files are present), install pydatafaker with:
 
 .. code-block:: console
 
-    $ poetry install
+    poetry install
 
 
 .. _Github repo: https://github.com/samedwardes/pydatafaker

@@ -1,5 +1,11 @@
 {
     "python.pythonPath": "C:\\Users\\sedwardes\\Miniconda3\\envs\\pydatafaker\\python.exe",
     "python.formatting.provider": "black",
-    "restructuredtext.confPath": "${workspaceFolder}\\docs"
+    "restructuredtext.confPath": "${workspaceFolder}\\docs",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }
