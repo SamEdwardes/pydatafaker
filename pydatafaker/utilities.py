@@ -10,7 +10,7 @@ def create_date(min_year=2000, max_year=2020):
     min_year : int, optional
         The minimum possible year, by default 2000.
     max_year : int, optional
-        The maximum possible year, by default 2020
+        The maximum possible year, by default 2020.
 
     Returns
     -------
