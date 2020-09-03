@@ -129,3 +129,9 @@ dmypy.json
 .pyre/
 .Rproj.user
 junit/test-results.xml
+docs/source/generated/pydatafaker.business.create_business.rst
+docs/source/generated/pydatafaker.business.create_employee_table.rst
+docs/source/generated/pydatafaker.business.create_invoice_table.rst
+docs/source/generated/pydatafaker.business.create_po_table.rst
+docs/source/generated/pydatafaker.business.create_vendor_table.rst
+docs/source/generated/pydatafaker.business.rst
