@@ -12,7 +12,6 @@
 #
 import os
 import sys
-import pydata_sphinx_theme
 sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -35,9 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',
-    'sphinx.ext.linkcode',
-    'pydata_sphinx_theme',
-    
+    'sphinx.ext.linkcode',    
 ]
 
 autosummary_generate = True
