@@ -1,0 +1,9 @@
+# required to build on the readthedocs using poetry
+
+build:
+    image: latest
+  python:
+    version: 3.7
+    pip_install: true
+    extra_requirements:
+      - docs

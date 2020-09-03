@@ -8,7 +8,7 @@ library(reticulate)
 use_condaenv("pydatafaker")
 ```
 
-# pydatafaker
+# PyDataFaker
 
 A python package to create fake data with relationships between tables.
 
@@ -25,6 +25,7 @@ More entities are currently being developed. If you  have any ideas of additiona
 ## Table of contents
 
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -35,6 +36,12 @@ More entities are currently being developed. If you  have any ideas of additiona
 ```bash
 pip install pydatafaker
 ```
+
+## Documentation
+
+Documentation can be found on...
+
+> TODO: update read the docs
 
 ## Usage
 
@@ -71,21 +78,8 @@ pd.merge(invoice_summary, vendors, how='left', on='vendor_id')
 
 ## Contributing
 
-Please see [CONTRIBUTING.rst](CONTRIBUTING.rst).
+Please see [docs/source/contributing.rst](docs/source/contributing.rst).
 
 ## Credits
 
 Developed by Sam Edwardes.
-
-## Reminders for developers
-
-Helpful reminders for PyDataFaker developers
-
-### Updating the documentation
-
-```bash
-poetry run sphinx-apidoc -f -o docs/source pydatafaker
-cd docs
-poetry run make html
-```
-
