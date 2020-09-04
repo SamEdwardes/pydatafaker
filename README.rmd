@@ -39,9 +39,7 @@ pip install pydatafaker
 
 ## Documentation
 
-Documentation can be found on...
-
-> TODO: update read the docs
+Documentation can be found at [https://pydatafaker.readthedocs.io/en/latest/index.html](https://pydatafaker.readthedocs.io/en/latest/index.html).
 
 ## Usage
 
@@ -82,4 +80,13 @@ Please see [docs/source/contributing.rst](docs/source/contributing.rst).
 
 ## Credits
 
-Developed by Sam Edwardes.
+Developed by:
+
+* Sam Edwardes
+
+Logo:
+
+* Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
+* Front from [fontmeme.com/retro-fonts/](https://fontmeme.com/retro-fonts/)
+* Logo generated using [logomakr.com](logomakr.com/7scB4)
+

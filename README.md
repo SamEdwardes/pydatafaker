@@ -41,9 +41,8 @@ pip install pydatafaker
 
 ## Documentation
 
-Documentation can be found on…
-
-> TODO: update read the docs
+Documentation can be found at
+<https://pydatafaker.readthedocs.io/en/latest/index.html>.
 
 ## Usage
 
@@ -73,17 +72,17 @@ biz['invoice_summary_table']
 ```
 
     ##     invoice_id  amount invoice_date     po_id     vendor_id
-    ## 0    inv_00001   97031   2010-08-07  po_00057  vendor_00036
-    ## 1    inv_00002  109332   2002-07-01  po_00021  vendor_00011
-    ## 2    inv_00003   91668   2018-06-14  po_00044  vendor_00024
-    ## 3    inv_00004  108011   2008-10-18  po_00076  vendor_00058
-    ## 4    inv_00005  110817   2019-02-04  po_00085  vendor_00038
+    ## 0    inv_00001   85313   2006-05-18  po_00074  vendor_00020
+    ## 1    inv_00002  102511   2010-03-19  po_00017  vendor_00048
+    ## 2    inv_00003  116998   2004-04-04  po_00013  vendor_00006
+    ## 3    inv_00004   91595   2010-03-05  po_00023  vendor_00003
+    ## 4    inv_00005  127056   2014-05-13  po_00060  vendor_00028
     ## ..         ...     ...          ...       ...           ...
-    ## 245  inv_00246  108461   2000-02-06  po_00035  vendor_00004
-    ## 246  inv_00247   80117   2019-11-05  po_00025  vendor_00069
-    ## 247  inv_00248   93032   2009-07-19  po_00084  vendor_00085
-    ## 248  inv_00249  115524   2008-11-04  po_00068  vendor_00073
-    ## 249  inv_00250  126293   2002-09-15  po_00059  vendor_00090
+    ## 245  inv_00246   54936   2018-11-09  po_00071  vendor_00015
+    ## 246  inv_00247   97616   2004-03-25  po_00071  vendor_00015
+    ## 247  inv_00248   98365   2000-09-04  po_00064  vendor_00010
+    ## 248  inv_00249   74361   2005-09-02  po_00052  vendor_00032
+    ## 249  inv_00250   68888   2008-07-07  po_00073  vendor_00097
     ## 
     ## [250 rows x 5 columns]
 
@@ -96,18 +95,18 @@ vendors = biz['vendor_table']
 pd.merge(invoice_summary, vendors, how='left', on='vendor_id')
 ```
 
-    ##     invoice_id  amount  ...                   phone                        email
-    ## 0    inv_00001   97031  ...         +1-872-617-0969         thomas39@example.com
-    ## 1    inv_00002  109332  ...        599-991-9214x966           gsmith@example.org
-    ## 2    inv_00003   91668  ...    001-734-627-6973x265      dannyhoward@example.com
-    ## 3    inv_00004  108011  ...        025-796-1061x564    marshallkathy@example.org
-    ## 4    inv_00005  110817  ...        579-689-9896x352         vdaniels@example.net
-    ## ..         ...     ...  ...                     ...                          ...
-    ## 245  inv_00246  108461  ...       191.429.0233x9234    laurensanders@example.org
-    ## 246  inv_00247   80117  ...      241.033.2329x22589    hensonwilliam@example.com
-    ## 247  inv_00248   93032  ...            252-370-5255  cochranbrittany@example.org
-    ## 248  inv_00249  115524  ...  001-995-279-0968x92447        gregory39@example.net
-    ## 249  inv_00250  126293  ...       189-989-1659x6577            vgill@example.org
+    ##     invoice_id  amount  ...                   phone                       email
+    ## 0    inv_00001   85313  ...           (919)472-5788        daniel91@example.com
+    ## 1    inv_00002  102511  ...       (178)697-5211x058    seancastillo@example.org
+    ## 2    inv_00003  116998  ...            932.430.6920     mooreamanda@example.org
+    ## 3    inv_00004   91595  ...        958-198-9444x355      samantha22@example.com
+    ## 4    inv_00005  127056  ...  001-566-535-4000x26384     frankbarron@example.com
+    ## ..         ...     ...  ...                     ...                         ...
+    ## 245  inv_00246   54936  ...       135-151-8494x2791        marvin72@example.org
+    ## 246  inv_00247   97616  ...       135-151-8494x2791        marvin72@example.org
+    ## 247  inv_00248   98365  ...            642-833-5079  dianahernandez@example.net
+    ## 248  inv_00249   74361  ...       (794)308-1258x383     billyvaldez@example.net
+    ## 249  inv_00250   68888  ...   001-291-455-4032x9171    adamsjasmine@example.com
     ## 
     ## [250 rows x 10 columns]
 
@@ -117,4 +116,14 @@ Please see [docs/source/contributing.rst](docs/source/contributing.rst).
 
 ## Credits
 
-Developed by Sam Edwardes.
+Developed by:
+
+  - Sam Edwardes
+
+Logo:
+
+  - Icon made by [Freepik](https://www.flaticon.com/authors/freepik)
+    from [www.flaticon.com](https://www.flaticon.com/)
+  - Front from
+    [fontmeme.com/retro-fonts/](https://fontmeme.com/retro-fonts/)
+  - Logo generated using [logomakr.com](logomakr.com/7scB4)
