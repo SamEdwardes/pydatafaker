@@ -73,12 +73,8 @@ html_static_path = ['_static']
 
 # -- Options for pydata-sphinx-theme -----------------------------------------
 
-html_logo = "_static/logo.png"
+html_logo = "_static/logo_with_white_text.png"
 html_favicon = "_static/favicon.ico"
-
-html_theme_options = {
-  "use_edit_page_button": True,
-}
 
 html_context = {
     "github_user": "samedwardes",
