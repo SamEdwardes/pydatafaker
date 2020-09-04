@@ -1,0 +1,11 @@
+# .readthedocs.yml
+# https://github.com/UBC-MDS/cookiecutter-ubc-mds/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/.readthedocs.yml
+
+build:
+    image: latest
+python:
+    version: 3.7
+    pip_install: true
+    extra_requirements:
+        - docs
+  
