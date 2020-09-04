@@ -2,8 +2,8 @@
 
 build:
     image: latest
-python:
+  python:
     version: 3.7
     pip_install: true
     extra_requirements:
-        - docs
+      - docs
