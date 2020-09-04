@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "pydatafaker"
-version = "0.1.1-alpha.1"
+version = "0.1.1-alpha.2"
 description = "A python package to create fake data with relationships between tables."
 authors = ["Sam Edwardes"]
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/SamEdwardes/pydatafaker"
+documentation = "https://pydatafaker.readthedocs.io/en/latest/index.html"
+keywords = ["python", "fake", "data", "fake-data"]
 
 [tool.poetry.dependencies]
 python = "^3.7"

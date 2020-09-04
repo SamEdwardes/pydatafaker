@@ -6,6 +6,8 @@
 Welcome to PyDataFaker's documentation!
 =======================================
 
+PyDataFaker is a python package to generate fake data. *Data base* style data can be generated, meaning tables with relationships between them are created.
+
 .. toctree::
    :maxdepth: 2
 
@@ -17,6 +19,12 @@ Welcome to PyDataFaker's documentation!
 Credits
 =======
 
-.. raw:: html
+Developed by:
 
-   <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+* Sam Edwardes
+
+Logo:
+
+* Icon made by `Freepik <https://www.flaticon.com/authors/freepik>`_ from `www.flaticon.com <https://www.flaticon.com/>`_
+* Front from `fontmeme.com/retro-fonts/ <https://fontmeme.com/retro-fonts/>`_
+* Logo generated using `logomakr.com <logomakr.com/7scB4l>`_
