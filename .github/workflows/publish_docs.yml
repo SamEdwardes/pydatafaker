@@ -30,6 +30,11 @@ jobs:
       - name: delete pyproject.toml from docs branch
         run: |
           rm pyproject.toml
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add pyproject.toml
+          git commit -m "removed old pyproject.toml"
+          git push
       
       - name: copy pyproject.toml from master to docs
         run: |
