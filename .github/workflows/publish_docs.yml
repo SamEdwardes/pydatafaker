@@ -33,8 +33,13 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
+
+      - name: Update poetry dependencies
           poetry remove --dev sphinx-rtd-theme
           poetry add sphinx-rtd-theme
+          poetry install
+
+      - name: Push new commit to docs branch
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add pyproject.toml
