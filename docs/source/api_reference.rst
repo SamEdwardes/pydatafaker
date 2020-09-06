@@ -40,4 +40,5 @@ The school module allows you to create a school by generating fake data.
    pydatafaker.school.create_school
    pydatafaker.school.create_students
    pydatafaker.school.create_teachers
+   pydatafaker.school.create_grades
    pydatafaker.school.create_rooms
