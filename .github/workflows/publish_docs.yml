@@ -32,13 +32,8 @@ jobs:
           rm pyproject.toml
       
       - name: copy pyproject.toml from master to docs
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          src_branch: master
-          src_path: pyproject.toml
-          dst_branch: docs
-          dst_path: pyproject.toml
+        run: |
+          curl https://raw.githubusercontent.com/SamEdwardes/pydatafaker/master/pyproject.toml --output pyproject.toml
       
       - name: Setup Python
         uses: actions/setup-python@v2
