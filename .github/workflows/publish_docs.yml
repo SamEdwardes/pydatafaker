@@ -26,6 +26,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: docs
+          
+      - name: delete pyproject.toml from docs branch
+        run: |
+          rm pyproject.toml
+      
+      - name: copy pyproject.toml from master to docs
+        uses: andstor/copycat-action@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          src_branch: master
+          src_path: pyproject.toml
+          dst_branch: docs
+          dst_path: pyproject.toml
       
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -39,7 +52,8 @@ jobs:
 
       - name: Update poetry dependencies
         run: |
-          poetry add sphinx-rtd-theme # add sphinx-rtd-theme as a requirement so readthedocs will work
+          poetry remove --dev sphinx-rtd-theme
+          poetry add sphinx-rtd-theme
           poetry install
 
       - name: Push new commit to docs branch
