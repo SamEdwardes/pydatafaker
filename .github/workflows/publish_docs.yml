@@ -39,8 +39,7 @@ jobs:
 
       - name: Update poetry dependencies
         run: |
-          poetry remove --dev sphinx-rtd-theme
-          poetry add sphinx-rtd-theme
+          poetry add sphinx-rtd-theme # add sphinx-rtd-theme as a requirement so readthedocs will work
           poetry install
 
       - name: Push new commit to docs branch
