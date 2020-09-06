@@ -10,7 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+
+      - name: Checkout master
+        uses: actions/checkout@master
 
       - name: Merge master -> docs
         uses: devmasx/merge-branch@v1.3.0
