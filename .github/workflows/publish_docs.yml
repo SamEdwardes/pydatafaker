@@ -16,6 +16,7 @@ jobs:
         uses: devmasx/merge-branch@v1.3.0
         with:
           type: now
+          from_branch: master
           target_branch: docs
           github_token: ${{ github.token }}
 
