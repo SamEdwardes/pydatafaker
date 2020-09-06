@@ -10,7 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+
+      - name: Checkout master
+        uses: actions/checkout@master
 
       - name: Merge master -> docs
         uses: devmasx/merge-branch@v1.3.0
@@ -33,8 +35,16 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
+          poetry install
+
+      - name: Update poetry dependencies
+        run: |
           poetry remove --dev sphinx-rtd-theme
           poetry add sphinx-rtd-theme
+          poetry install
+
+      - name: Push new commit to docs branch
+        run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add pyproject.toml
