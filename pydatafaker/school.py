@@ -66,6 +66,32 @@ def create_teachers(n=14, min_grade=1, max_grade=7):
     return x
 
 
+def create_grades(student_ids, n_tests_per_student=10):
+    """Create fake grades.
+
+    Parameters
+    ----------
+    student_ids : list
+        A list of unique student IDs.
+    n_tests_per_student : int, optional
+        The number of tests to generate per student, by default 10.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame containing test scores.
+    """
+    n = n_tests_per_student * len(student_ids)
+    x = pd.DataFrame(
+        {
+            "student_id": np.repeat(student_ids, n_tests_per_student),
+            "test_score": np.random.normal(0.8, 0.15, size=n),
+        }
+    )
+    x["test_score"] = x["test_score"].apply(lambda x: 1 if x > 1 else x)
+    return x
+
+
 def create_rooms(n=10):
     """Create a DataFrame with fake room IDs and attributes.
 
@@ -91,10 +117,7 @@ def create_rooms(n=10):
 
 
 def create_school(
-    n_students=300,
-    max_class_size=22,
-    min_grade=1,
-    max_grade=7,
+    n_students=300, max_class_size=22, min_grade=1, max_grade=7, n_tests_per_student=10
 ):
     """Create an entire fake school.
 
@@ -117,6 +140,8 @@ def create_school(
         The minimum grade a teacher can teach, by default 1.
     max_grade : int, optional
         The maximum grade a teacher can teach, by default 7.
+    n_tests_per_student : int, optional
+        The number of tests to generate per student, by default 10.
 
     Returns
     -------
@@ -164,9 +189,14 @@ def create_school(
     teacher_table["room_id"] = np.random.choice(
         room_table["room_id"], replace=False, size=n_teachers
     )
+    # grades
+    grade_table = create_grades(
+        student_table["student_id"].to_list(), n_tests_per_student
+    )
     x = {
         "student_table": student_table,
         "teacher_table": teacher_table,
         "room_table": room_table,
+        "grade_table": grade_table,
     }
     return x
