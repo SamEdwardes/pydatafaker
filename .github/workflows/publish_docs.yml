@@ -35,6 +35,7 @@ jobs:
           pip install poetry
 
       - name: Update poetry dependencies
+        run: |
           poetry remove --dev sphinx-rtd-theme
           poetry add sphinx-rtd-theme
           poetry install
