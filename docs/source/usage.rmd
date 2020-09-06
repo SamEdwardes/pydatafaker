@@ -1,0 +1,60 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+use_condaenv("pydatafaker")
+```
+
+
+# Usage
+
+## Installation
+
+To Install please run:
+
+```bash
+pip intsall pydatafaker
+```
+
+## Business
+
+The business module allows you to create fake business data. Calling `business.create_business()` will return a dictionary of related tables.
+
+```{python}
+import pandas as pd
+from pydatafaker import business
+biz =  business.create_business()
+biz.keys()
+```
+
+Each value inside the dictionary contains a Pandas DataFrame.
+
+```{python}
+biz['invoice_summary_table']
+```
+
+Tables can be joined together to add additional details.
+
+```{python}
+invoice_summary = biz['invoice_summary_table']
+vendors = biz['vendor_table']
+
+pd.merge(invoice_summary, vendors, how='left', on='vendor_id')
+```
+
+## School
+
+The school module allows you to generate fake school data
+
+```{python}
+import pandas as pd
+from pydatafaker import school
+skool =  school.create_school()
+skool.keys()
+skool['student_table']
+skool['teacher_table']
+skool['room_table']
+```

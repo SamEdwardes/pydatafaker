@@ -23,7 +23,7 @@ copyright = '2020, Sam Edwardes'
 author = 'Sam Edwardes'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1a1'
+release = '0.1.1-alpha.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,7 +36,8 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',
     'sphinx.ext.linkcode',
-    "sphinx_rtd_theme",
+    'sphinx_rtd_theme',
+    'recommonmark',
 ]
 
 autosummary_generate = True
@@ -56,6 +57,11 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 
 # -- Options for HTML output -------------------------------------------------

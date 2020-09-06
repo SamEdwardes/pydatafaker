@@ -8,6 +8,31 @@ Welcome to PyDataFaker's documentation!
 
 PyDataFaker is a python package to generate fake data. *Data base* style data can be generated, meaning tables with relationships between them are created.
 
+
+===========
+Quick Start
+===========
+
+PyDataFaker can be installed from `PiPy <https://pypi.org/project/pydatafaker/>`_ by running:
+
+.. code-block:: bash
+    :linenos:
+
+    pip install pydatafaker
+
+Easily create fake business data:
+
+.. code-block:: python
+    :linenos:
+
+    from pydata faker import business
+
+    biz = business.create_business()
+
+=================
+Table of Contents
+=================
+
 .. toctree::
    :maxdepth: 2
 
@@ -18,6 +43,8 @@ PyDataFaker is a python package to generate fake data. *Data base* style data ca
 =======
 Credits
 =======
+
+The source code for PyDataFaker is hosted on github at `https://github.com/SamEdwardes/pydatafaker <https://github.com/SamEdwardes/pydatafaker>`_.
 
 Developed by:
 
