@@ -12,8 +12,8 @@ PyDataFaker is a python package to generate fake data. *Data base* style data ca
    :maxdepth: 2
 
    usage
-   contributing
    api_reference
+   contributing
 
 =======
 Credits

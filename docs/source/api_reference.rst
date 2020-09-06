@@ -4,8 +4,8 @@ API Reference
 
 Below is all of the API documentation.
 
-Modules
-=======
+Overview of Modules
+===================
 
 The following different types of fake data can be created.
 
@@ -13,12 +13,12 @@ The following different types of fake data can be created.
    :toctree: generated/
 
    pydatafaker.business
-
+   pydatafaker.school
 
 Business
 ========
 
-The business module allows you to create a business generating fake data.
+The business module allows you to create a business by generating fake data.
 
 .. autosummary::
    :toctree: generated/
@@ -28,3 +28,16 @@ The business module allows you to create a business generating fake data.
    pydatafaker.business.create_employee_table
    pydatafaker.business.create_po_table
    pydatafaker.business.create_invoice_table
+
+School
+========
+
+The school module allows you to create a school by generating fake data.
+
+.. autosummary::
+   :toctree: generated/
+
+   pydatafaker.school.create_school
+   pydatafaker.school.create_students
+   pydatafaker.school.create_teachers
+   pydatafaker.school.create_rooms
