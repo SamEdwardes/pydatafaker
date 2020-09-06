@@ -10,23 +10,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@master
+      - uses: actions/checkout@master
 
-      # - name: Merge master -> docs
-      #   uses: devmasx/merge-branch@v1.3.0
-      #   with:
-      #     type: now
-      #     target_branch: docs
-      #     github_token: ${{ github.token }}
+      - name: Merge master -> docs
+        uses: devmasx/merge-branch@v1.3.0
+        with:
+          type: now
+          target_branch: docs
+          github_token: ${{ github.token }}
 
-      - name: checkout docs
+      - name: checkout docs branch
         uses: actions/checkout@v2
         with:
           ref: docs
-
-      - name: merge master -> docs
-        run: |
-          git merge master
       
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -43,5 +39,3 @@ jobs:
           git add pyproject.toml
           git commit -m "github-actions added sphinx-rtd-theme as a dependency for docs branch"
           git push
-
-    
