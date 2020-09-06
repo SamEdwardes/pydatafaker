@@ -7,9 +7,12 @@ def test_create_school():
     student_table = x['student_table']
     teacher_table = x['student_table']
     room_table = x['student_table']
+    grade_table = x['grade_table']
 
     assert student_table.shape[0] == 400
     assert room_table.shape[0] == teacher_table.shape[0]
+    assert min(grade_table['test_score']) >= 0
+    assert min(grade_table['test_score']) <= 1
 
     # make sure that each classroom is under the max number of students
     num_students_per_class = student_table['teacher_id'].value_counts()
