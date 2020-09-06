@@ -1,0 +1,47 @@
+# Publish docs to readthedocs
+
+name: publish_docs
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@master
+
+      # - name: Merge master -> docs
+      #   uses: devmasx/merge-branch@v1.3.0
+      #   with:
+      #     type: now
+      #     target_branch: docs
+      #     github_token: ${{ github.token }}
+
+      - name: checkout docs
+        uses: actions/checkout@v2
+        with:
+          ref: docs
+
+      - name: merge master -> docs
+        run: |
+          git merge master
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry remove --dev sphinx-rtd-theme
+          poetry add sphinx-rtd-theme
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add pyproject.toml
+          git commit -m "github-actions added sphinx-rtd-theme as a dependency for docs branch"
+          git push
+
+    
