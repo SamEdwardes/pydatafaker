@@ -35,6 +35,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
+          poetry install
 
       - name: Update poetry dependencies
         run: |
