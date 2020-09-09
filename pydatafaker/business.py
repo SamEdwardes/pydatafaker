@@ -96,8 +96,8 @@ def create_invoice_table(
     po_table,
     mean_inv_line_amount=5_000,
     sd_inv_line_amount=4_000,
-    min_year=2000,
-    max_year=2020,
+    min_date='2000-01-01',
+    max_date='2020-12-31',
     n_invoice=250,
     n_line_item=5_000,
 ):
@@ -111,10 +111,10 @@ def create_invoice_table(
         The mean value of invoice line items, by default 5_000.
     sd_inv_line_amount : int, optional
         The standard deviation of invoice line items, by default 4_000.
-    min_year : int, optional
-        The minimum possible year, by default 2000.
-    max_year : int, optional
-        The maximum possible year, by default 2020.
+    min_date : str, optional
+        The minimum possible date, by default '2000-01-01'.
+    max_date : str, optional
+        The maximum possible date, by default '2020-12-31'.
     n_invoice : int, optional
         The number of fake invoices to generate, by default 250.
     n_line_item : int, optional
@@ -149,7 +149,7 @@ def create_invoice_table(
     invoice_summary = invoice_line_items.groupby("invoice_id")[["amount"]].sum()
     invoice_summary = invoice_summary.reset_index()
     invoice_summary["invoice_date"] = [
-        create_date(min_year, max_year) for _ in range(n_invoice)
+        create_date(min_date, max_date) for _ in range(n_invoice)
     ]
     invoice_summary["po_id"] = np.random.choice(
         po_table["po_id"], replace=True, size=n_invoice
@@ -167,8 +167,8 @@ def create_business(
     sd_po_amount=250_000,
     mean_inv_line_amount=5_000,
     sd_inv_line_amount=4_000,
-    min_year=2000,
-    max_year=2020,
+    min_date='2000-01-01',
+    max_date='2020-12-31',
     n_invoice=250,
     n_line_item=5_000,
 ):
@@ -203,10 +203,10 @@ def create_business(
         The mean value of invoice line items, by default 5_000.
     sd_inv_line_amount : int, optional
         The standard deviation of invoice line items, by default 4_000.
-    min_year : int, optional
-        The minimum possible year, by default 2000.
-    max_year : int, optional
-        The maximum possible year, by default 2020.
+    min_date : str, optional
+        The minimum possible date, by default '2000-01-01'.
+    max_date : str, optional
+        The maximum possible date, by default '2020-12-31'.
     n_invoice : int, optional
         The number of fake invoices to generate, by default 250.
     n_line_item : int, optional
@@ -225,8 +225,8 @@ def create_business(
         po_table,
         mean_inv_line_amount,
         sd_inv_line_amount,
-        min_year,
-        max_year,
+        min_date,
+        max_date,
         n_invoice,
         n_line_item,
     )
