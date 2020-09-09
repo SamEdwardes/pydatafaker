@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from faker import Faker
 
+from pydatafaker.utilities import create_date
+
 
 def create_students(n=300, min_grade=1, max_grade=7):
     """Create a DataFrame with fake student names and attributes.
@@ -66,7 +68,9 @@ def create_teachers(n=14, min_grade=1, max_grade=7):
     return x
 
 
-def create_grades(student_ids, n_tests_per_student=10):
+def create_grades(
+    student_ids, n_tests_per_student=10, min_date="2020-09-01", max_date="2021-07-30"
+):
     """Create fake grades.
 
     Parameters
@@ -75,6 +79,10 @@ def create_grades(student_ids, n_tests_per_student=10):
         A list of unique student IDs.
     n_tests_per_student : int, optional
         The number of tests to generate per student, by default 10.
+    min_date : str, optional
+        The minimum possible date, by default '2020-09-01'.
+    max_date : str, optional
+        The maximum possible date, by default '2020-07-30'.
 
     Returns
     -------
@@ -86,8 +94,10 @@ def create_grades(student_ids, n_tests_per_student=10):
         {
             "student_id": np.repeat(student_ids, n_tests_per_student),
             "test_score": np.random.normal(0.8, 0.15, size=n),
+            "date": [create_date(min_date, max_date) for _ in range(n)],
         }
     )
+    # test scores should never be greater than 1
     x["test_score"] = x["test_score"].apply(lambda x: 1 if x > 1 else x)
     return x
 
@@ -117,7 +127,13 @@ def create_rooms(n=10):
 
 
 def create_school(
-    n_students=300, max_class_size=22, min_grade=1, max_grade=7, n_tests_per_student=10
+    n_students=300,
+    max_class_size=22,
+    min_grade=1,
+    max_grade=7,
+    n_tests_per_student=10,
+    min_date="2020-09-01",
+    max_date="2020-07-30",
 ):
     """Create an entire fake school.
 
@@ -142,6 +158,10 @@ def create_school(
         The maximum grade a teacher can teach, by default 7.
     n_tests_per_student : int, optional
         The number of tests to generate per student, by default 10.
+    min_date : str, optional
+        The minimum possible date, by default '2020-09-01'.
+    max_date : str, optional
+        The maximum possible date, by default '2020-07-30'.
 
     Returns
     -------
