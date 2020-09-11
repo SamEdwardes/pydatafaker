@@ -20,6 +20,24 @@ def create_vendor_table(n=100):
     -------
     pandas.DataFrame
         A dataframe containing: vendor_id, vendor_name, and vendor_address.
+
+    Examples
+    --------
+    >>> from pydatafaker import business
+    >>> business.create_vendor_table()
+        vendor_id                 vendor_name  ...                   phone                       email
+    0   vendor_00001                   Cross PLC  ...        140.020.8594x615   christopher58@example.org
+    1   vendor_00002  Reese, Alexander and Brown  ...              3053622738       anthony47@example.net
+    2   vendor_00003                 Collins LLC  ...  001-762-921-2180x55306  josephanderson@example.org
+    3   vendor_00004              Newton-Salazar  ...     (316)484-7324x28092         wcastro@example.net
+    4   vendor_00005                   Lee-Pratt  ...   +1-273-523-6439x95391     stephenbeck@example.org
+    ..           ...                         ...  ...                     ...                         ...
+    95  vendor_00096                 Jones Group  ...         +1-356-662-3508          zcline@example.org
+    96  vendor_00097     Gray, Allison and Gomez  ...           (410)086-2754   sandersrobert@example.net
+    97  vendor_00098                  Moreno PLC  ...      (854)754-1215x6266       johnjones@example.org
+    98  vendor_00099                  Ruiz-Evans  ...       177-212-9248x3227   gregorybryant@example.org
+    99  vendor_00100               Taylor-Harmon  ...            180.498.3960      maryrangel@example.com
+    [100 rows x 6 columns]
     """
     fake = Faker()
     x = pd.DataFrame(
@@ -50,6 +68,19 @@ def create_employee_table(vendor_id, n=100):
     -------
     pandas.DataFrame
         A dataframe containing: employee_id, employee_name, and vendor_id.
+
+    Examples
+    --------
+    >>> from pydatafaker import business
+    >>> business.create_employee_table(['vendor_1', 'vendor_2'], 5)
+        employee_id      employee_name vendor_id
+    0  employee_00001   Matthew Sandoval  vendor_1
+    1  employee_00002  Christina Holland  vendor_2
+    2  employee_00003     Alice Gonzales  vendor_2
+    3  employee_00004   Savannah Proctor  vendor_2
+    4  employee_00005   Vanessa Hamilton  vendor_1
+    5  employee_00006      Justin Holmes  vendor_2
+    6  employee_00007         David Luna  vendor_2
     """
     fake = Faker()
     n_vendors = len(vendor_id)
@@ -86,6 +117,17 @@ def create_po_table(vendor_id, mean_po_amount=1_000_000, sd_po_amount=250_000, n
     -------
     pandas.DataFrame
         A dataframe containing: po_id, vendor_id, and po_amount
+
+    Examples
+    --------
+    >>> from pydatafaker import business
+    >>> business.create_po_table(['vendor_1', 'vendor_2'], n=3)
+        po_id vendor_id  po_amount
+    0  po_00001  vendor_1     913350
+    1  po_00002  vendor_2     852461
+    2  po_00003  vendor_2    1355507
+    3  po_00004  vendor_1    1064312
+    4  po_00005  vendor_1    1017772
     """
     n_vendors = len(vendor_id)
     n_rows = n + n_vendors
@@ -136,6 +178,40 @@ def create_invoice_table(
     -------
     (pandas.DataFrame, pandas.DataFrame)
         A tuple of two dataframes: invoice_summary and invoice_line_items.
+
+    Examples
+    --------
+    >>> from pydatafaker import business
+    >>> po_table = business.create_po_table(['vendor_1', 'vendor_2'], n=3)
+    >>> inv_summary, inv_line_item = business.create_invoice_table(po_table)
+    >>> inv_summary
+        invoice_id  amount invoice_date     po_id vendor_id
+    0    inv_00001   87829   2010-09-12  po_00001  vendor_1
+    1    inv_00002  111015   2006-11-08  po_00002  vendor_2
+    2    inv_00003  113403   2013-07-01  po_00003  vendor_1
+    3    inv_00004  100322   2000-01-04  po_00004  vendor_1
+    4    inv_00005  127148   2014-10-27  po_00005  vendor_2
+    ..         ...     ...          ...       ...       ...
+    250  inv_00251   73123   2015-04-22  po_00004  vendor_1
+    251  inv_00252  108463   2000-10-20  po_00004  vendor_1
+    252  inv_00253   66640   2008-03-02  po_00003  vendor_1
+    253  inv_00254  134062   2019-09-02  po_00002  vendor_2
+    254  inv_00255  105510   2007-09-24  po_00002  vendor_2
+    [255 rows x 5 columns]
+    >>> inv_line_item
+        invoice_id      invoice_line_id  amount    description
+    0     inv_00001  line_item_000000001    3122  0-7745-2454-5
+    1     inv_00001  line_item_000001972    7211  1-884097-46-4
+    2     inv_00001  line_item_000002279    5460  1-80940-801-6
+    3     inv_00001  line_item_000002367   10747  0-7425-2011-0
+    4     inv_00001  line_item_000002491    9836  1-303-76036-3
+    ...         ...                  ...     ...            ...
+    5250  inv_00255  line_item_000005166    3916  0-8466-4508-4
+    5251  inv_00255  line_item_000001643    5948  1-334-08325-8
+    5252  inv_00255  line_item_000000734    6931  0-13-809752-6
+    5253  inv_00255  line_item_000003126    5303  1-57517-108-2
+    5254  inv_00255  line_item_000003778    2161  0-222-91897-7
+    [5255 rows x 4 columns]
     """
     fake = Faker()
     n_pos = len(po_table["po_id"].to_list())
@@ -241,6 +317,57 @@ def create_business(
     -------
     dict
         A dictionary containing related dataframes.
+
+    Examples
+    --------
+    >>> from pydatafaker import business
+    >>> biz = business.create_business()
+    >>> biz.keys
+    <built-in method keys of dict object at 0x000001EC7F532E40>
+    >>> biz.keys()
+    dict_keys(['vendor_table', 'po_table', 'invoice_summary_table', 'invoice_line_item_table', 'employee_table', 'contract_table', 'rate_sheet_table', 'timesheet_table'])
+    >>> biz['vendor_table']
+        vendor_id                vendor_name  ...               phone                      email
+    0   vendor_00001             Byrd-Gutierrez  ...        845.182.3329    gamblekatie@example.com
+    1   vendor_00002   Shaw, White and Richmond  ...  (378)573-4689x8570    cindylucero@example.org
+    2   vendor_00003  Boyd, Mosley and Santiago  ...        070-378-7627       egoodwin@example.net
+    3   vendor_00004            Hernandez-Klein  ...       (778)011-8623        jason05@example.com
+    4   vendor_00005                  Ayers LLC  ...  (685)853-4020x9781     loriwalker@example.com
+    ..           ...                        ...  ...                 ...                        ...
+    95  vendor_00096  Benson, Durham and Kelley  ...       (886)807-6220  powersnatalie@example.org
+    96  vendor_00097                   Hill PLC  ...       (958)223-4924     dianepayne@example.net
+    97  vendor_00098                Delgado LLC  ...        278-256-0545         john97@example.net
+    98  vendor_00099               Romero Group  ...       (699)578-3025    erikcarlson@example.com
+    99  vendor_00100                Stevens Inc  ...          1485591460       daniel91@example.net
+    [100 rows x 6 columns]
+    >>> biz['employee_table']
+            employee_id      employee_name     vendor_id
+    0    employee_00001  Richard Robertson  vendor_00001
+    1    employee_00002          Amanda Wu  vendor_00002
+    2    employee_00003     Nicholas Brown  vendor_00003
+    3    employee_00004        Betty Evans  vendor_00004
+    4    employee_00005     Jennifer Lewis  vendor_00005
+    ..              ...                ...           ...
+    195  employee_00196     Madison Rivera  vendor_00094
+    196  employee_00197        Denise Rose  vendor_00092
+    197  employee_00198         Peter Moss  vendor_00012
+    198  employee_00199     Sydney Coleman  vendor_00071
+    199  employee_00200   Julie Strickland  vendor_00095
+    [200 rows x 3 columns]
+    >>> biz['invoice_line_item_table']
+        invoice_id      invoice_line_id  amount    description
+    0     inv_00001  line_item_000000001    3621  0-320-40333-5
+    1     inv_00001  line_item_000004269    4494  0-437-82194-3
+    2     inv_00001  line_item_000002923    4747  1-66714-426-X
+    3     inv_00001  line_item_000004644    4013  0-371-59348-4
+    4     inv_00001  line_item_000001550   12146  0-04-668150-7
+    ...         ...                  ...     ...            ...
+    5445  inv_00450  line_item_000004997    6167  0-06-558662-X
+    5446  inv_00450  line_item_000000450    4039  1-118-57228-9
+    5447  inv_00450  line_item_000003202   13686  1-893058-35-2
+    5448  inv_00450  line_item_000003791    4145  0-906649-99-4
+    5449  inv_00450  line_item_000000846    9113  1-04-617333-2
+    [5450 rows x 4 columns]
     """
     vendor_table = create_vendor_table(n=n_vendors)
     vendor_ids = vendor_table["vendor_id"].to_list()
