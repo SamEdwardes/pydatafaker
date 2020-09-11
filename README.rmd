@@ -8,7 +8,7 @@ library(reticulate)
 use_condaenv("pydatafaker")
 ```
 
-# PyDataFaker
+![logo](docs/source/_static/logo_with_grey_text.png)
 
 ![test_with_pytest](https://github.com/SamEdwardes/pydatafaker/workflows/test_with_pytest/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/pydatafaker/badge/?version=latest)](https://pydatafaker.readthedocs.io/en/latest/?badge=latest)

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydatafaker"
-version = "0.1.1-alpha.3"
+version = "0.1.1-alpha.4"
 description = "A python package to create fake data with relationships between tables."
 authors = ["Sam Edwardes"]
 license = "MIT"

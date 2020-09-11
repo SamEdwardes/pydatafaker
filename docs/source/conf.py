@@ -23,7 +23,7 @@ copyright = '2020, Sam Edwardes'
 author = 'Sam Edwardes'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1-alpha.3'
+release = '0.1.1-alpha.4'
 
 
 # -- General configuration ---------------------------------------------------
