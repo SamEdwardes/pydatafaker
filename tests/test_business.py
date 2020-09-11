@@ -17,7 +17,7 @@ def test_create_business_complete_data():
     invoice_summary_table = x["invoice_summary_table"]
     invoice_line_item_table = x["invoice_line_item_table"]
     vendor_ids = vendor_table["vendor_id"].to_list()
- 
+
     # check if vendors are complete
     # check each vendor has at least one employee
     v_ids_employee = sorted(employee_table["vendor_id"].unique().tolist())
@@ -33,10 +33,18 @@ def test_create_business_complete_data():
         assert i in v_ids_inv
     # check each vendor has at least one invoice line item
     invoice_line_item_table = invoice_line_item_table.merge(
-        invoice_summary_table[["vendor_id", "invoice_id"]],
-        how="left",
-        on="invoice_id"
+        invoice_summary_table[["vendor_id", "invoice_id"]], how="left", on="invoice_id"
     )
     v_ids_inv_line = sorted(invoice_line_item_table["vendor_id"].unique().tolist())
     for i in vendor_ids:
         assert i in v_ids_inv_line
+
+    # check if POs are complete
+    po_ids = invoice_summary_table["po_id"].to_list()
+    for i in po_table["po_id"]:
+        assert i in po_ids
+
+    # check if invoice line items are complete
+    inv_ids = invoice_line_item_table["invoice_id"].to_list()
+    for i in invoice_summary_table["invoice_id"]:
+        assert i in inv_ids
