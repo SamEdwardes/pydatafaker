@@ -133,7 +133,7 @@ def create_school(
     max_grade=7,
     n_tests_per_student=10,
     min_date="2020-09-01",
-    max_date="2020-07-30",
+    max_date="2021-07-30",
 ):
     """Create an entire fake school.
 
@@ -161,7 +161,7 @@ def create_school(
     min_date : str, optional
         The minimum possible date, by default '2020-09-01'.
     max_date : str, optional
-        The maximum possible date, by default '2020-07-30'.
+        The maximum possible date, by default '2021-07-30'.
 
     Returns
     -------
@@ -195,13 +195,10 @@ def create_school(
         num_students_grade_i = grade_distribution.loc[i, "num_students"]
         num_teachers_grade_i = grade_distribution.loc[i, "num_teachers"]
         teachers_grade_i = teacher_table.query("grade == @i")["teacher_id"].to_list()
-        available_teachers = np.repeat(
-            teachers_grade_i, (num_students_grade_i / num_teachers_grade_i) + 1
-        )
+        teachers_grade_i_assignment = teachers_grade_i * int((num_students_grade_i / num_teachers_grade_i) + 1)
+        teachers_grade_i_assignment = teachers_grade_i_assignment[0:num_students_grade_i]
         students_by_grade_i = student_table.query("grade == @i").reset_index(drop=True)
-        students_by_grade_i["teacher_id"] = np.random.choice(
-            available_teachers, replace=False, size=num_students_grade_i
-        )
+        students_by_grade_i["teacher_id"] = teachers_grade_i_assignment
         students_by_grade.append(students_by_grade_i)
     student_table = pd.concat(students_by_grade)
     # create rooms and assign to teachers
@@ -211,7 +208,10 @@ def create_school(
     )
     # grades
     grade_table = create_grades(
-        student_table["student_id"].to_list(), n_tests_per_student
+        student_ids=student_table["student_id"].to_list(), 
+        n_tests_per_student=n_tests_per_student,
+        min_date=min_date,
+        max_date=max_date
     )
     x = {
         "student_table": student_table,
