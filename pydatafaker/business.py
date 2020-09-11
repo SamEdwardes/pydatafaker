@@ -29,7 +29,7 @@ def create_vendor_table(n=100):
             "vendor_description": [fake.catch_phrase() for _ in range(n)],
             "address": [fake.address() for _ in range(n)],
             "phone": [fake.phone_number() for _ in range(n)],
-            "email": [fake.safe_email() for _ in range(n)]
+            "email": [fake.safe_email() for _ in range(n)],
         }
     )
     return x
@@ -56,9 +56,12 @@ def create_employee_table(vendor_id, n=100):
     n_rows = n + n_vendors
     x = pd.DataFrame(
         {
-            "employee_id": ["employee_" + str(i).zfill(5) for i in range(1, n_rows + 1)],
+            "employee_id": [
+                "employee_" + str(i).zfill(5) for i in range(1, n_rows + 1)
+            ],
             "employee_name": [fake.name() for _ in range(n_rows)],
-            "vendor_id": vendor_id + np.random.choice(vendor_id, replace=True, size=n).tolist()
+            "vendor_id": vendor_id
+            + np.random.choice(vendor_id, replace=True, size=n).tolist(),
         }
     )
     return x
@@ -89,7 +92,8 @@ def create_po_table(vendor_id, mean_po_amount=1_000_000, sd_po_amount=250_000, n
     x = pd.DataFrame(
         {
             "po_id": ["po_" + str(i).zfill(5) for i in range(1, n_rows + 1)],
-            "vendor_id": vendor_id + np.random.choice(vendor_id, replace=True, size=n).tolist(),
+            "vendor_id": vendor_id
+            + np.random.choice(vendor_id, replace=True, size=n).tolist(),
             "po_amount": np.abs(
                 np.random.normal(mean_po_amount, sd_po_amount, size=n_rows)
             ).astype(int),
@@ -102,8 +106,8 @@ def create_invoice_table(
     po_table,
     mean_inv_line_amount=5_000,
     sd_inv_line_amount=4_000,
-    min_date='2000-01-01',
-    max_date='2020-12-31',
+    min_date="2000-01-01",
+    max_date="2020-12-31",
     n_invoice=250,
     n_line_item=5_000,
 ):
@@ -141,7 +145,8 @@ def create_invoice_table(
     # invoice line items
     invoice_line_items = pd.DataFrame(
         {
-            "invoice_id": invoice_ids + np.random.choice(invoice_ids, replace=True, size=n_line_item).tolist(),
+            "invoice_id": invoice_ids
+            + np.random.choice(invoice_ids, replace=True, size=n_line_item).tolist(),
             "invoice_line_id": [
                 "line_item_" + str(i).zfill(9) for i in range(1, n_rows_inv_line + 1)
             ],
@@ -179,8 +184,8 @@ def create_business(
     sd_po_amount=250_000,
     mean_inv_line_amount=5_000,
     sd_inv_line_amount=4_000,
-    min_date='2000-01-01',
-    max_date='2020-12-31',
+    min_date="2000-01-01",
+    max_date="2020-12-31",
     n_invoice=250,
     n_line_item=5_000,
 ):

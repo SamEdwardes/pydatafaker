@@ -195,8 +195,12 @@ def create_school(
         num_students_grade_i = grade_distribution.loc[i, "num_students"]
         num_teachers_grade_i = grade_distribution.loc[i, "num_teachers"]
         teachers_grade_i = teacher_table.query("grade == @i")["teacher_id"].to_list()
-        teachers_grade_i_assignment = teachers_grade_i * int((num_students_grade_i / num_teachers_grade_i) + 1)
-        teachers_grade_i_assignment = teachers_grade_i_assignment[0:num_students_grade_i]
+        teachers_grade_i_assignment = teachers_grade_i * int(
+            (num_students_grade_i / num_teachers_grade_i) + 1
+        )
+        teachers_grade_i_assignment = teachers_grade_i_assignment[
+            0:num_students_grade_i
+        ]
         students_by_grade_i = student_table.query("grade == @i").reset_index(drop=True)
         students_by_grade_i["teacher_id"] = teachers_grade_i_assignment
         students_by_grade.append(students_by_grade_i)
@@ -208,10 +212,10 @@ def create_school(
     )
     # grades
     grade_table = create_grades(
-        student_ids=student_table["student_id"].to_list(), 
+        student_ids=student_table["student_id"].to_list(),
         n_tests_per_student=n_tests_per_student,
         min_date=min_date,
-        max_date=max_date
+        max_date=max_date,
     )
     x = {
         "student_table": student_table,
