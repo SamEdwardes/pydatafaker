@@ -33,7 +33,11 @@ biz.keys()
 Each value inside the dictionary contains a Pandas DataFrame.
 
 ```{python}
-biz['invoice_summary_table']
+biz["vendor_table"]
+biz["employee_table"]
+biz["po_table"]
+biz["invoice_summary_table"]
+biz["invoice_line_item_table"]
 ```
 
 Tables can be joined together to add additional details.
@@ -57,4 +61,5 @@ skool.keys()
 skool['student_table']
 skool['teacher_table']
 skool['room_table']
+skool['grade_table']
 ```

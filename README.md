@@ -1,5 +1,5 @@
 
-# PyDataFaker
+![logo](docs/source/_static/logo_with_grey_text.png)
 
 ![test\_with\_pytest](https://github.com/SamEdwardes/pydatafaker/workflows/test_with_pytest/badge.svg)
 [![Documentation
@@ -73,17 +73,17 @@ biz['invoice_summary_table']
 ```
 
     ##     invoice_id  amount invoice_date     po_id     vendor_id
-    ## 0    inv_00001  113523   2007-03-03  po_00054  vendor_00056
-    ## 1    inv_00002  138918   2015-12-10  po_00082  vendor_00005
-    ## 2    inv_00003   74733   2016-12-11  po_00056  vendor_00095
-    ## 3    inv_00004   94950   2003-02-04  po_00012  vendor_00085
-    ## 4    inv_00005   65429   2010-09-08  po_00060  vendor_00078
+    ## 0    inv_00001  112392   2016-01-10  po_00003  vendor_00093
+    ## 1    inv_00002  155508   2000-02-18  po_00095  vendor_00033
+    ## 2    inv_00003   78362   2014-12-01  po_00001  vendor_00025
+    ## 3    inv_00004  123528   2000-03-14  po_00001  vendor_00025
+    ## 4    inv_00005   49888   2015-03-23  po_00081  vendor_00075
     ## ..         ...     ...          ...       ...           ...
-    ## 245  inv_00246  124564   2000-05-08  po_00010  vendor_00068
-    ## 246  inv_00247  108703   2013-01-15  po_00099  vendor_00072
-    ## 247  inv_00248  124734   2014-12-16  po_00079  vendor_00051
-    ## 248  inv_00249  100626   2016-08-02  po_00047  vendor_00052
-    ## 249  inv_00250   75489   2004-10-13  po_00047  vendor_00052
+    ## 245  inv_00246  155793   2011-11-15  po_00081  vendor_00075
+    ## 246  inv_00247   95235   2009-08-12  po_00083  vendor_00088
+    ## 247  inv_00248  126292   2010-05-07  po_00086  vendor_00088
+    ## 248  inv_00249   96395   2010-08-05  po_00065  vendor_00036
+    ## 249  inv_00250   61256   2018-04-28  po_00078  vendor_00091
     ## 
     ## [250 rows x 5 columns]
 
@@ -96,18 +96,18 @@ vendors = biz['vendor_table']
 pd.merge(invoice_summary, vendors, how='left', on='vendor_id')
 ```
 
-    ##     invoice_id  amount  ...                 phone                     email
-    ## 0    inv_00001  113523  ...  001-828-249-6157x408  nicholashuff@example.org
-    ## 1    inv_00002  138918  ...          859.096.2158   elizabeth66@example.org
-    ## 2    inv_00003   74733  ...  +1-464-465-9562x0288  sarahbennett@example.com
-    ## 3    inv_00004   94950  ...      001-513-424-8491   zacharyyang@example.org
-    ## 4    inv_00005   65429  ...         (482)058-1418      denise65@example.org
-    ## ..         ...     ...  ...                   ...                       ...
-    ## 245  inv_00246  124564  ...          195-749-4878          vmay@example.net
-    ## 246  inv_00247  108703  ...  001-968-278-4877x690   brianmacias@example.org
-    ## 247  inv_00248  124734  ...      730.130.8577x132       qsnyder@example.net
-    ## 248  inv_00249  100626  ...         (272)217-8221       vicki33@example.org
-    ## 249  inv_00250   75489  ...         (272)217-8221       vicki33@example.org
+    ##     invoice_id  amount  ...                phone                       email
+    ## 0    inv_00001  112392  ...  (878)925-9060x48837        joanne31@example.net
+    ## 1    inv_00002  155508  ...  (085)250-3658x57756  simpsonmatthew@example.net
+    ## 2    inv_00003   78362  ...     001-060-773-3423      juliashort@example.org
+    ## 3    inv_00004  123528  ...     001-060-773-3423      juliashort@example.org
+    ## 4    inv_00005   49888  ...   516-622-9334x65178        andrew77@example.org
+    ## ..         ...     ...  ...                  ...                         ...
+    ## 245  inv_00246  155793  ...   516-622-9334x65178        andrew77@example.org
+    ## 246  inv_00247   95235  ...         785-421-2374   crystalsutton@example.org
+    ## 247  inv_00248  126292  ...         785-421-2374   crystalsutton@example.org
+    ## 248  inv_00249   96395  ...   (126)191-5842x2835         logan03@example.org
+    ## 249  inv_00250   61256  ...        (396)940-5345         gmurphy@example.com
     ## 
     ## [250 rows x 10 columns]
 
@@ -120,24 +120,24 @@ skool =  school.create_school()
 skool.keys()
 ```
 
-    ## dict_keys(['student_table', 'teacher_table', 'room_table'])
+    ## dict_keys(['student_table', 'teacher_table', 'room_table', 'grade_table'])
 
 ``` python
 skool['student_table']
 ```
 
-    ##       student_id                  name  grade    teacher_id
-    ## 0   student_0001       Christopher Ray      1  teacher_0011
-    ## 1   student_0002          Henry Jacobs      1  teacher_0011
-    ## 2   student_0004           Brenda Mays      1  teacher_0010
-    ## 3   student_0019          Laura Thomas      1  teacher_0011
-    ## 4   student_0022         Philip Taylor      1  teacher_0010
-    ## ..           ...                   ...    ...           ...
-    ## 33  student_0263        Wesley Johnson      7  teacher_0012
-    ## 34  student_0266        Jennifer Reyes      7  teacher_0012
-    ## 35  student_0276    Abigail Cunningham      7  teacher_0016
-    ## 36  student_0283  Christina Fitzgerald      7  teacher_0012
-    ## 37  student_0288       Mr. Walter Rios      7  teacher_0012
+    ##       student_id              name  grade    teacher_id
+    ## 0   student_0023   Samantha Hebert      1  teacher_0010
+    ## 1   student_0024  Dustin Hernandez      1  teacher_0003
+    ## 2   student_0032       Sylvia Reed      1  teacher_0010
+    ## 3   student_0034          Glen Kim      1  teacher_0010
+    ## 4   student_0049     Cynthia Huynh      1  teacher_0010
+    ## ..           ...               ...    ...           ...
+    ## 37  student_0273      Steven Scott      7  teacher_0005
+    ## 38  student_0284    Julie Martinez      7  teacher_0005
+    ## 39  student_0287        Sarah Ross      7  teacher_0005
+    ## 40  student_0295        Jill Jones      7  teacher_0005
+    ## 41  student_0299       Stacy Smith      7  teacher_0005
     ## 
     ## [300 rows x 4 columns]
 
