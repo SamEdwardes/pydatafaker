@@ -138,7 +138,7 @@ def create_invoice_table(
         A tuple of two dataframes: invoice_summary and invoice_line_items.
     """
     fake = Faker()
-    n_pos = po_table.shape[0]
+    n_pos = len(po_table['po_id'].to_list())
     n_rows_inv = n_pos + n_invoice
     n_rows_inv_line = n_rows_inv + n_line_item
     invoice_ids = ["inv_" + str(i).zfill(5) for i in range(1, n_rows_inv + 1)]
@@ -167,9 +167,9 @@ def create_invoice_table(
     invoice_summary["invoice_date"] = [
         create_date(min_date, max_date) for _ in range(n_rows_inv)
     ]
-    invoice_summary["po_id"] = np.random.choice(
-        po_table["po_id"], replace=True, size=n_rows_inv
-    )
+    invoice_summary["po_id"] = po_table['po_id'].to_list() + np.random.choice(
+        po_table["po_id"], replace=True, size=n_rows_inv - n_pos
+    ).tolist()
     invoice_summary = invoice_summary.merge(
         po_table[["po_id", "vendor_id"]], how="left", on="po_id"
     )
