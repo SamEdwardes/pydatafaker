@@ -129,14 +129,4 @@ dmypy.json
 .pyre/
 .Rproj.user
 junit/test-results.xml
-docs/source/generated/pydatafaker.business.create_business.rst
-docs/source/generated/pydatafaker.business.create_employee_table.rst
-docs/source/generated/pydatafaker.business.create_invoice_table.rst
-docs/source/generated/pydatafaker.business.create_po_table.rst
-docs/source/generated/pydatafaker.business.create_vendor_table.rst
-docs/source/generated/pydatafaker.business.rst
-docs/source/generated/pydatafaker.school.create_rooms.rst
-docs/source/generated/pydatafaker.school.create_school.rst
-docs/source/generated/pydatafaker.school.create_students.rst
-docs/source/generated/pydatafaker.school.create_teachers.rst
-docs/source/generated/pydatafaker.school.rst
+docs/source/generated/*
