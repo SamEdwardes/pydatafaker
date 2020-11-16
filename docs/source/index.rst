@@ -13,7 +13,7 @@ PyDataFaker is a python package to generate fake data. *Data base* style data ca
 Quick Start
 ===========
 
-PyDataFaker can be installed from `PiPy <https://pypi.org/project/pydatafaker/>`_ by running:
+PyDataFaker can be installed from `PyPi <https://pypi.org/project/pydatafaker/>`_ by running:
 
 .. code-block:: bash
     :linenos:

@@ -1,145 +1,506 @@
+![logo](https://raw.githubusercontent.com/SamEdwardes/pydatafaker/master/docs/source/_static/logo_with_grey_text.png)
 
-![logo](docs/source/_static/logo_with_grey_text.png)
+![test_with_pytest](https://github.com/SamEdwardes/pydatafaker/workflows/test_with_pytest/badge.svg)
+[![Documentation Status](https://readthedocs.org/projects/pydatafaker/badge/?version=latest)](https://pydatafaker.readthedocs.io/en/latest/?badge=latest)
 
-![test\_with\_pytest](https://github.com/SamEdwardes/pydatafaker/workflows/test_with_pytest/badge.svg)
-[![Documentation
-Status](https://readthedocs.org/projects/pydatafaker/badge/?version=latest)](https://pydatafaker.readthedocs.io/en/latest/?badge=latest)
+PyDataFaker is a python package to create fake data with relationships between tables. Creating fake data can be useful for many different applications such as creating product demos or testing software. 
 
-PyDataFaker is a python package to create fake data with relationships
-between tables. Creating fake data can be useful for many different
-applications such as creating product demos or testing software.
+Python already has a great package for creating fake data called Faker [https://faker.readthedocs.io/en/master/](https://faker.readthedocs.io/en/master/). Faker is great for creating individual fake units of data, but it can be time consuming to create more complicated fake data that is actually related to one another.
 
-Python already has a great package for creating fake data called Faker
-<https://faker.readthedocs.io/en/master/>. Faker is great for creating
-individual fake units of data, but it can be time consuming to create
-more complicated fake data that is actually related to one another.
+Imagine you are developing a new enterprise resource planning (ERP) software to challenge SAP. You may need to create some fake data to test your application. You will need an invoice table, a vendor listing, purchase order table, and more. PyDataFaker allows your to quickly create these tables and generates relationships between them!
 
-Imagine you are developing a new enterprise resource planning (ERP)
-software to challenge SAP. You may need to create some fake data to test
-your application. You will need an invoice table, a vendor listing,
-purchase order table, and more. PyDataFaker allows your to quickly
-create these tables and generates relationships between them\!
+PyDataFaker is currently under development. At this time it is possible to create the following entities:
 
-PyDataFaker is currently under development. At this time it is possible
-to create the following entities:
+- **Business**: create a fake business with common ERP like tables
+- **School**: create a fake school
 
-  - **Business**: create a fake business with common ERP like tables
-  - **School**: create a fake school
-
-More entities are currently being developed. If you have any ideas of
-additional entities that should be included please submit an issue here:
-<https://github.com/SamEdwardes/pydatafaker/issues>.
+More entities are currently being developed. If you  have any ideas of additional entities that should be included please submit an issue here: [https://github.com/SamEdwardes/pydatafaker/issues](https://github.com/SamEdwardes/pydatafaker/issues).
 
 ## Table of contents
 
-  - [Installation](#installation)
-  - [Documentation](#documentation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [Credits](#credits)
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Credits](#credits)
 
 ## Installation
 
-``` bash
+```bash
 pip install pydatafaker
 ```
 
 ## Documentation
 
-Documentation can be found at
-<https://pydatafaker.readthedocs.io/en/latest/index.html>. The package
-is distributed through PyPi at <https://pypi.org/project/pydatafaker/>
+Documentation can be found at [https://pydatafaker.readthedocs.io/en/latest/index.html](https://pydatafaker.readthedocs.io/en/latest/index.html). The package is distributed through PyPi at [https://pypi.org/project/pydatafaker/](https://pypi.org/project/pydatafaker/)
 
 ## Usage
 
 ### Business
 
-The business module allows you to create fake business data. Calling
-`business.create_business()` will return a dictionary of related tables.
+The business module allows you to create fake business data. Calling `business.create_business()` will return a dictionary of related tables.
 
-``` python
+
+```python
 import pandas as pd
 from pydatafaker import business
 biz =  business.create_business()
 biz.keys()
 ```
 
-    ## dict_keys(['vendor_table', 'po_table', 'invoice_summary_table', 'invoice_line_item_table', 'employee_table', 'contract_table', 'rate_sheet_table', 'timesheet_table'])
+
+
+
+    dict_keys(['vendor_table', 'po_table', 'invoice_summary_table', 'invoice_line_item_table', 'employee_table', 'contract_table', 'rate_sheet_table', 'timesheet_table'])
+
+
 
 Each value inside the dictionary contains a Pandas DataFrame.
 
-``` python
+
+```python
 biz['invoice_summary_table']
 ```
 
-    ##     invoice_id  amount invoice_date     po_id     vendor_id
-    ## 0    inv_00001  112392   2016-01-10  po_00003  vendor_00093
-    ## 1    inv_00002  155508   2000-02-18  po_00095  vendor_00033
-    ## 2    inv_00003   78362   2014-12-01  po_00001  vendor_00025
-    ## 3    inv_00004  123528   2000-03-14  po_00001  vendor_00025
-    ## 4    inv_00005   49888   2015-03-23  po_00081  vendor_00075
-    ## ..         ...     ...          ...       ...           ...
-    ## 245  inv_00246  155793   2011-11-15  po_00081  vendor_00075
-    ## 246  inv_00247   95235   2009-08-12  po_00083  vendor_00088
-    ## 247  inv_00248  126292   2010-05-07  po_00086  vendor_00088
-    ## 248  inv_00249   96395   2010-08-05  po_00065  vendor_00036
-    ## 249  inv_00250   61256   2018-04-28  po_00078  vendor_00091
-    ## 
-    ## [250 rows x 5 columns]
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>invoice_id</th>
+      <th>amount</th>
+      <th>invoice_date</th>
+      <th>po_id</th>
+      <th>vendor_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>inv_00001</td>
+      <td>59157</td>
+      <td>2011-01-20</td>
+      <td>po_00001</td>
+      <td>vendor_00001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>inv_00002</td>
+      <td>87796</td>
+      <td>2007-09-06</td>
+      <td>po_00002</td>
+      <td>vendor_00002</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>inv_00003</td>
+      <td>57963</td>
+      <td>2000-03-06</td>
+      <td>po_00003</td>
+      <td>vendor_00003</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>inv_00004</td>
+      <td>59409</td>
+      <td>2001-03-31</td>
+      <td>po_00004</td>
+      <td>vendor_00004</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>inv_00005</td>
+      <td>86614</td>
+      <td>2002-01-12</td>
+      <td>po_00005</td>
+      <td>vendor_00005</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>445</th>
+      <td>inv_00446</td>
+      <td>83316</td>
+      <td>2012-09-02</td>
+      <td>po_00087</td>
+      <td>vendor_00087</td>
+    </tr>
+    <tr>
+      <th>446</th>
+      <td>inv_00447</td>
+      <td>45707</td>
+      <td>2008-07-10</td>
+      <td>po_00101</td>
+      <td>vendor_00098</td>
+    </tr>
+    <tr>
+      <th>447</th>
+      <td>inv_00448</td>
+      <td>111932</td>
+      <td>2002-09-26</td>
+      <td>po_00158</td>
+      <td>vendor_00012</td>
+    </tr>
+    <tr>
+      <th>448</th>
+      <td>inv_00449</td>
+      <td>35104</td>
+      <td>2012-09-21</td>
+      <td>po_00133</td>
+      <td>vendor_00075</td>
+    </tr>
+    <tr>
+      <th>449</th>
+      <td>inv_00450</td>
+      <td>15397</td>
+      <td>2015-12-15</td>
+      <td>po_00054</td>
+      <td>vendor_00054</td>
+    </tr>
+  </tbody>
+</table>
+<p>450 rows × 5 columns</p>
+</div>
+
+
 
 Tables can be joined together to add additional details.
 
-``` python
+
+```python
 invoice_summary = biz['invoice_summary_table']
 vendors = biz['vendor_table']
-
 pd.merge(invoice_summary, vendors, how='left', on='vendor_id')
 ```
 
-    ##     invoice_id  amount  ...                phone                       email
-    ## 0    inv_00001  112392  ...  (878)925-9060x48837        joanne31@example.net
-    ## 1    inv_00002  155508  ...  (085)250-3658x57756  simpsonmatthew@example.net
-    ## 2    inv_00003   78362  ...     001-060-773-3423      juliashort@example.org
-    ## 3    inv_00004  123528  ...     001-060-773-3423      juliashort@example.org
-    ## 4    inv_00005   49888  ...   516-622-9334x65178        andrew77@example.org
-    ## ..         ...     ...  ...                  ...                         ...
-    ## 245  inv_00246  155793  ...   516-622-9334x65178        andrew77@example.org
-    ## 246  inv_00247   95235  ...         785-421-2374   crystalsutton@example.org
-    ## 247  inv_00248  126292  ...         785-421-2374   crystalsutton@example.org
-    ## 248  inv_00249   96395  ...   (126)191-5842x2835         logan03@example.org
-    ## 249  inv_00250   61256  ...        (396)940-5345         gmurphy@example.com
-    ## 
-    ## [250 rows x 10 columns]
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>invoice_id</th>
+      <th>amount</th>
+      <th>invoice_date</th>
+      <th>po_id</th>
+      <th>vendor_id</th>
+      <th>vendor_name</th>
+      <th>vendor_description</th>
+      <th>address</th>
+      <th>phone</th>
+      <th>email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>inv_00001</td>
+      <td>59157</td>
+      <td>2011-01-20</td>
+      <td>po_00001</td>
+      <td>vendor_00001</td>
+      <td>Smith-Scott</td>
+      <td>Front-line multimedia emulation</td>
+      <td>75343 Harper Corners Suite 581\nJuanberg, AK 0...</td>
+      <td>(193)898-1652x129</td>
+      <td>ftodd@example.org</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>inv_00002</td>
+      <td>87796</td>
+      <td>2007-09-06</td>
+      <td>po_00002</td>
+      <td>vendor_00002</td>
+      <td>Walker-Morgan</td>
+      <td>Cross-platform radical solution</td>
+      <td>941 Susan Isle\nThorntonberg, KS 82841</td>
+      <td>+1-636-744-9620x3991</td>
+      <td>rdunn@example.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>inv_00003</td>
+      <td>57963</td>
+      <td>2000-03-06</td>
+      <td>po_00003</td>
+      <td>vendor_00003</td>
+      <td>Noble and Sons</td>
+      <td>Configurable demand-driven emulation</td>
+      <td>1442 Jason Rapid Apt. 409\nEast Jade, RI 44983</td>
+      <td>477-214-2021x973</td>
+      <td>tinaschmidt@example.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>inv_00004</td>
+      <td>59409</td>
+      <td>2001-03-31</td>
+      <td>po_00004</td>
+      <td>vendor_00004</td>
+      <td>Baker, Walker and Davenport</td>
+      <td>Focused analyzing synergy</td>
+      <td>89120 Kimberly Extensions\nSouth Annettetown, ...</td>
+      <td>(643)621-7544x290</td>
+      <td>sarahstephenson@example.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>inv_00005</td>
+      <td>86614</td>
+      <td>2002-01-12</td>
+      <td>po_00005</td>
+      <td>vendor_00005</td>
+      <td>Patterson LLC</td>
+      <td>Profound maximized productivity</td>
+      <td>880 Bryan Tunnel Apt. 542\nKaylabury, AK 50221</td>
+      <td>586-422-7311x0127</td>
+      <td>littleyesenia@example.net</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>445</th>
+      <td>inv_00446</td>
+      <td>83316</td>
+      <td>2012-09-02</td>
+      <td>po_00087</td>
+      <td>vendor_00087</td>
+      <td>Wagner-Gutierrez</td>
+      <td>Multi-lateral motivating projection</td>
+      <td>8771 Roger Road Suite 781\nDanielton, ID 88428</td>
+      <td>001-023-820-3050x78454</td>
+      <td>colliernicole@example.net</td>
+    </tr>
+    <tr>
+      <th>446</th>
+      <td>inv_00447</td>
+      <td>45707</td>
+      <td>2008-07-10</td>
+      <td>po_00101</td>
+      <td>vendor_00098</td>
+      <td>Simmons-Leonard</td>
+      <td>Focused reciprocal secured line</td>
+      <td>9010 Ashley Mountains\nMarthaton, VT 68298</td>
+      <td>391-162-6024</td>
+      <td>serranonancy@example.org</td>
+    </tr>
+    <tr>
+      <th>447</th>
+      <td>inv_00448</td>
+      <td>111932</td>
+      <td>2002-09-26</td>
+      <td>po_00158</td>
+      <td>vendor_00012</td>
+      <td>Welch LLC</td>
+      <td>Versatile methodical interface</td>
+      <td>4016 Brianna Road\nPort Andrealand, AR 22214</td>
+      <td>+1-837-862-5571x172</td>
+      <td>williamoliver@example.com</td>
+    </tr>
+    <tr>
+      <th>448</th>
+      <td>inv_00449</td>
+      <td>35104</td>
+      <td>2012-09-21</td>
+      <td>po_00133</td>
+      <td>vendor_00075</td>
+      <td>Franklin-Bennett</td>
+      <td>Digitized holistic methodology</td>
+      <td>68125 Vega Plains Apt. 062\nEast Emily, OK 80097</td>
+      <td>001-979-468-2358x530</td>
+      <td>leroymoore@example.org</td>
+    </tr>
+    <tr>
+      <th>449</th>
+      <td>inv_00450</td>
+      <td>15397</td>
+      <td>2015-12-15</td>
+      <td>po_00054</td>
+      <td>vendor_00054</td>
+      <td>Barton-Oneill</td>
+      <td>Mandatory 4thgeneration hierarchy</td>
+      <td>107 Julie Passage Suite 904\nSouth George, OH ...</td>
+      <td>(491)397-7771x41615</td>
+      <td>jacksonrachel@example.com</td>
+    </tr>
+  </tbody>
+</table>
+<p>450 rows × 10 columns</p>
+</div>
+
+
 
 ### School
 
-``` python
+
+```python
 import pandas as pd
 from pydatafaker import school
 skool =  school.create_school()
 skool.keys()
-```
-
-    ## dict_keys(['student_table', 'teacher_table', 'room_table', 'grade_table'])
-
-``` python
 skool['student_table']
 ```
 
-    ##       student_id              name  grade    teacher_id
-    ## 0   student_0023   Samantha Hebert      1  teacher_0010
-    ## 1   student_0024  Dustin Hernandez      1  teacher_0003
-    ## 2   student_0032       Sylvia Reed      1  teacher_0010
-    ## 3   student_0034          Glen Kim      1  teacher_0010
-    ## 4   student_0049     Cynthia Huynh      1  teacher_0010
-    ## ..           ...               ...    ...           ...
-    ## 37  student_0273      Steven Scott      7  teacher_0005
-    ## 38  student_0284    Julie Martinez      7  teacher_0005
-    ## 39  student_0287        Sarah Ross      7  teacher_0005
-    ## 40  student_0295        Jill Jones      7  teacher_0005
-    ## 41  student_0299       Stacy Smith      7  teacher_0005
-    ## 
-    ## [300 rows x 4 columns]
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+      <th>grade</th>
+      <th>teacher_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>student_0001</td>
+      <td>Tyler Campbell</td>
+      <td>1</td>
+      <td>teacher_0007</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>student_0003</td>
+      <td>Melissa Coleman</td>
+      <td>1</td>
+      <td>teacher_0010</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>student_0011</td>
+      <td>Crystal Church</td>
+      <td>1</td>
+      <td>teacher_0014</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>student_0017</td>
+      <td>Paul Gray</td>
+      <td>1</td>
+      <td>teacher_0007</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>student_0023</td>
+      <td>Joshua Morales</td>
+      <td>1</td>
+      <td>teacher_0010</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>student_0258</td>
+      <td>Nicole Hoffman</td>
+      <td>7</td>
+      <td>teacher_0015</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>student_0261</td>
+      <td>Joseph Lewis</td>
+      <td>7</td>
+      <td>teacher_0009</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>student_0294</td>
+      <td>Susan Jacobs</td>
+      <td>7</td>
+      <td>teacher_0015</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>student_0299</td>
+      <td>Mark Whitehead</td>
+      <td>7</td>
+      <td>teacher_0009</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>student_0300</td>
+      <td>Melissa Sosa</td>
+      <td>7</td>
+      <td>teacher_0015</td>
+    </tr>
+  </tbody>
+</table>
+<p>300 rows × 4 columns</p>
+</div>
+
+
 
 ## Contributing
 
@@ -149,12 +510,10 @@ Please see [docs/source/contributing.rst](docs/source/contributing.rst).
 
 Developed by:
 
-  - Sam Edwardes
+* Sam Edwardes
 
 Logo:
 
-  - Icon made by [Freepik](https://www.flaticon.com/authors/freepik)
-    from [www.flaticon.com](https://www.flaticon.com/)
-  - Front from
-    [fontmeme.com/retro-fonts/](https://fontmeme.com/retro-fonts/)
-  - Logo generated using [logomakr.com](logomakr.com/7scB4)
+* Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
+* Front from [fontmeme.com/retro-fonts/](https://fontmeme.com/retro-fonts/)
+* Logo generated using [logomakr.com](logomakr.com/7scB4)

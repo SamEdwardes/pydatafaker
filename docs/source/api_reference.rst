@@ -7,7 +7,7 @@ Below is all of the API documentation.
 Overview of Modules
 ===================
 
-The following different types of fake data can be created.
+The following different types of fake data can be created. More types are under development.
 
 .. autosummary::
    :toctree: generated/
